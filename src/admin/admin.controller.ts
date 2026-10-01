@@ -1,0 +1,24 @@
+import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Roles } from '../common/decorators/roles.decorator.js';
+import { UserService } from '../users/users.service.js';
+
+@ApiTags('Admin')
+@ApiBearerAuth()
+@Roles('admin')
+@Controller('admin')
+export class AdminController {
+  constructor(private usersService: UserService) {}
+
+  @Get('users')
+  @ApiOperation({ summary: 'List all users - admin only' })
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @Delete('users/:id')
+  @ApiOperation({ summary: 'Delete a user - admin only' })
+  remove(@Param('id') id: string) {
+    return this.usersService.delete(id);
+  }
+}
