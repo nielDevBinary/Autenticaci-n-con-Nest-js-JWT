@@ -51,10 +51,12 @@ POST /api/auth/reset-password
 Crear un archivo .env con las variables de entorno necesarias:
 ```env
 DATABASE_URL=
-JWT_SECRET=
+JWT_REFRESH_SECRET=
 JWT_ACCESS_EXPIRES_IN=
 JWT_REFRESH_EXPIRES_IN=
-
+RESEND_API_KEY=
+APP_URL=
+PORT=
 ```
 Instalar dependencias:
 ```bash
